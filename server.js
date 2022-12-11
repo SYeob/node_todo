@@ -133,4 +133,5 @@ app.put('/edit',function(req, res){
       console.log('수정완료');
       res.redirect('/');
     })
+    
 })

@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+const methodOverride = require ('method-override');
+app.use(methodOverride('_method'));
 app.set("view engine", "ejs");
 app.use("/public", express.static("public"));
 
@@ -107,3 +109,28 @@ app.get("/detail/:id", function (req, res) {
     }
   );
 });
+
+app.get("/edit/:id", function (req, res) {
+  db.collection("post").findOne(
+    { _id: parseInt(req.params.id) },
+    function (err, result) {
+      console.log(result);
+
+      if (result == null) {
+        res.render("error.ejs");
+      } else {
+        res.render("edit.ejs", { post: result });
+      }
+    }
+  );
+});
+
+app.put('/edit',function(req, res){
+  //폼에 담긴 제목데이터, 날짜데이터를 가지고, db.collection에 업데이트 해라
+  db.collection("post").updateOne({_id: parseInt(req.body.id)},
+  {$set: {title: req.body.title, date: req.body.date }},
+    function(err, result){
+      console.log('수정완료');
+      res.redirect('/');
+    })
+})

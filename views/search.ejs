@@ -18,7 +18,7 @@
 
         <div class="container">
             <ul class="list-group p-3">
-                <h4 class="ml-2 my-3 text-center">Todo List</h4>
+                <h4 class="ml-2 my-3 text-center">검색결과 페이지</h4>
                 <!-- 검색 -->
                 <div class="input-group mb-4">
                     <input class="form-control" id="search-input">
@@ -69,6 +69,9 @@
                 var inputValue = $('#search-input').val();
                 window.location.replace('/search?value=' + inputValue);
             })
+
+            var data = { name: "value", name2: "value2" }
+            $.param(data)
         </script>
 </body>
 

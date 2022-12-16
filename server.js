@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -219,7 +221,7 @@ app.delete("/delete", function (req, res) {
 
   //req.body에 담겨온 게시물번호를 가진 글을 db에서 찾아서 삭제해주세요~
   db.collection("post").deleteOne(
-    { _id: req.body.Id, 작성자: req.user._id },
+    { _id: req.body.Id, userId: req.user._id },
     function (err, result) {
       console.log("삭제완료");
       if (err) {

@@ -49,7 +49,6 @@
         <script>
 
             $('.delete').click(function (e) {
-
                 $.ajax({
                     method: 'DELETE',
                     url: '/delete',
@@ -68,7 +67,12 @@
             $('#search').click(function () {
                 var inputValue = $('#search-input').val();
                 window.location.replace('/search?value=' + inputValue);
+                if ($('#search-input').val() == '') {
+                    alert('검색어를 입력해주세요');
+                    stop();
+                }
             })
+
         </script>
 </body>
 
